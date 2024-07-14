@@ -21,3 +21,8 @@ output "instance_id" {
   description = "Instance ID"
   value = azurerm_linux_virtual_machine.this.id
 }
+
+output "playbook" {
+  description = "Ansible Playbook command"
+  value = "ansible-playbook -i ansible/${var.vm_name}/inventory.yaml ansible/${var.vm_name}/playbook.yaml --key-file ${var.private_key_file}"
+}

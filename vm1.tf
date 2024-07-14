@@ -9,10 +9,11 @@ module "vnet_1" {
 }
 
 module "vm1" {
-  source = "./modules/vm"
+  source = "./modules/public-vm"
   resource_group_name = module.vnet_1.resource_group_name
   location = module.vnet_1.location
   public_key_file = var.public_key_file
+  private_key_file = var.private_key_file
   admin_username = var.admin_username
   subnet_id = module.vnet_1.subnet_id
   vm_name = "vm1"
@@ -21,3 +22,4 @@ module "vm1" {
 output "vm1" {
   value = module.vm1
 }
+

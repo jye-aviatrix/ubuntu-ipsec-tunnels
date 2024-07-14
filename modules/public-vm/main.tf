@@ -105,3 +105,23 @@ resource "azurerm_network_interface_security_group_association" "this" {
   network_interface_id      = azurerm_network_interface.this.id
   network_security_group_id = azurerm_network_security_group.this.id
 }
+
+resource "local_file" "inventory" {
+  content = templatefile("${path.module}/../../template/inventory.yaml",
+    {
+        group_name = var.vm_name
+        host_ip = azurerm_public_ip.this.ip_address
+        ansible_user = var.admin_username
+    }
+  )
+  filename = "${path.module}/../../ansible/${var.vm_name}/inventory.yaml"
+}
+
+resource "local_file" "playbook" {
+  content = templatefile("${path.module}/../../template/playbook.yaml",
+    {
+        group_name = var.vm_name
+    }
+  )
+  filename = "${path.module}/../../ansible/${var.vm_name}/playbook.yaml"
+}

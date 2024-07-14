@@ -44,3 +44,7 @@ variable "public_key_file" {
   type = string
   description = "Provide path to public key file"
 }
+
+variable "private_key_file" {
+  description = "Provide path to private key file"
+}

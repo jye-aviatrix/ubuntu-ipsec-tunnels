@@ -1,0 +1,5 @@
+${group_name}:
+  hosts:
+    ${host_ip}:
+  vars:
+    ansible_user: ${ansible_user}

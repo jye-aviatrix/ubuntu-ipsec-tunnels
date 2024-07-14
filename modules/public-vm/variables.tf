@@ -22,6 +22,11 @@ variable "public_key_file" {
   type = string
 }
 
+variable "private_key_file" {
+  type = string
+}
+
+
 variable "size" {
     type = string
     default = "Standard_B1ms"
