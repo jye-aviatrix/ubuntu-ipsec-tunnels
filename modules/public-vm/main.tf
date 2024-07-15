@@ -16,6 +16,9 @@ resource "azurerm_network_interface" "this" {
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id = azurerm_public_ip.this.id
   }
+
+  enable_ip_forwarding = true
+  
 }
 
 resource "azurerm_linux_virtual_machine" "this" {
