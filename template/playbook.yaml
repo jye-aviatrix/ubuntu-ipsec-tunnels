@@ -1,9 +1,13 @@
-- name: My first play
+- name: Prepare IPSec site to site connection
   hosts: ${group_name}
+  become: true
+  become_user: root
+  become_method: sudo
   tasks:
-   - name: Ping my hosts
-     ansible.builtin.ping:
-
-   - name: Print message
-     ansible.builtin.debug:
-      msg: Hello world
+    - name: Update all host/vm packages
+      ansible.builtin.apt: # Use builtin apt module.
+        update_cache: true # Run the ‘apt-get update’.
+        cache_valid_time: 3600 # Update the apt cache if it is older than the cache_valid_time state in the 3600 seconds.
+        name: "*" #  All packages.
+        state: latest # Run ‘apt-get upgrade’.
+        
